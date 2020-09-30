@@ -170,7 +170,7 @@ class CustomerDashboard extends Component {
                      </FormGroup>
                     </div>
                     <div className='row'>
-                        <div className='container-fluid'>
+                        <div className='container-fluid' id="customerSortBtn">
                         <div className='col'>
                           <Button
                             className="my-3 btn-block sortBtn"

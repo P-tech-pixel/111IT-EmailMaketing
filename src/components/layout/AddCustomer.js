@@ -110,7 +110,7 @@ import {Button, Modal} from 'reactstrap';
                         /> 
                     </div>
                     <div className="input-field">
-                        <label for="customer Details">customer Details</label>
+                        <label for="customer Details">Customer email</label>
                         <input 
                                 id="email"
                                 value={this.state.newCustomerData.email}
