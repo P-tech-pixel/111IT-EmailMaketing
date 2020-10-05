@@ -3,8 +3,8 @@ import { Link, Redirect } from 'react-router-dom'
 import {
     Button,
     FormGroup,
-    Input,
-    Label
+    Input
+
 } from 'reactstrap';
 import axios from 'axios';
 import  '../layout/Custom.css';
@@ -13,7 +13,7 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showTable: true,
+            hideTable: false,
             searchedCustomerData: {
                 firstName: '',
             },
@@ -90,20 +90,23 @@ class Dashboard extends Component {
             });
         });
     }
-    //for table
+    //for table search 
     showOperation(){
-        if(this.state.searchedCustomerData.firstName != this.state.newCustomerData.firstName){
+        if(this.state.searchedCustomerData.firstName == this.state.newCustomerData.firstName){
             this.setState({
-                showTable:!this.state.showTable
+                 hideTable: false
               })
         }
         else{
             this.setState({
-                showTable: false
+                //hideTable:!this.state.hideTable
+                hideTable: true,
+                //customers: []
               })
         }
-
- 
+        //making the value of input disappear after the search button clicked.
+        this.state.searchedCustomerData.firstName= ''
+        //this.state.customers = []
     }
     render() {
        
@@ -116,28 +119,12 @@ class Dashboard extends Component {
         }
         let customers = result.map(customer => {
             return (
-                // returning the data in a table :
-                <tr key={customer.id}>
-                           <td><input type='checkbox' value={customer.checked} /></td>
-                           <td>{customer.id}</td>
-                           <td>{customer.firstName}</td>
-                           <td>{customer.lastName}</td>
-                           <td>{customer.email}</td>
-                           <td>{customer.phone}</td>
-                           <td>
-                             <Button
-                               color="warning"
-                               size="sm"
-                               className="mr-2 "
-                               onClick={this.editCustomer.bind(this, customer.id, customer.firstName, customer.lastName, customer.email, customer.phone)}
-                             >
-                               Edit
-                             </Button>{' '}
-                             <Button color="danger" size="sm" onClick={() => this.deleteCustomer(customer.id)}>
-                               Delete
-                            </Button>
-                           </td>
-                </tr>
+                <ul key={customer.id}>
+                        <li >{customer.firstName} {customer.lastName}</li>
+                        <li >{customer.phone}</li>
+                        <li >{customer.email}</li>
+                        <li >{customer.address}</li>
+                </ul>
                 
             );
         });
@@ -164,14 +151,12 @@ class Dashboard extends Component {
                                         id='customerSearch'
                                         value={this.state.searchedCustomerData.firstName}
                                         placeholder="Search customer by their names..."
-                                        onClick={
-                                            ()=>this.showOperation()  
-                                        }
-                                        
+
                                         onChange={e => {
 
                                             let { searchedCustomerData } = this.state;
                                             searchedCustomerData.firstName = e.target.value;
+
                                             this.setState({
                                                 searchedCustomerData,
                                                 filteredCustomers: this.state.customers.filter(customer => {
@@ -181,7 +166,11 @@ class Dashboard extends Component {
                                         }}
                                        
                                     />
-                                    <Label>{this.state.searchedCustomerData.firstName}</Label>
+                                    <Button
+                                         onClick={
+                                            ()=>this.showOperation()
+                                        }    
+                                    >Search</Button>
 
                                 </FormGroup>
                                 
@@ -198,12 +187,11 @@ class Dashboard extends Component {
                         <tr>
                             {
                                 //the table is hidden by default
-                                this.state.showTable?
-                                null:
+                                this.state.hideTable?
                                 <div>
                                    <td>{customers}</td>
                                 </div>
-
+                                :null
                             }
                         </tr>
                     </tbody>
@@ -211,16 +199,11 @@ class Dashboard extends Component {
                   </div>
 
               </div>
-    
-            
+      
                 <button class="btn waves-effect waves-light " type="submit" name="action">Send Email
                     <i class="material-icons right">send</i>
                 </button>               
             </div>
-
-
-
-
         );
     }
 }

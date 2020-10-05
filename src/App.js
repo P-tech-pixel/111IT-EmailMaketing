@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 import Dashboard from './components/dashboard/Dashboard';
+import Dash from './components/dashboard/Dash';
 import  CustomNavbar from './components/layout/CustomNavbar';
 import AddProduct from './components/layout/AddProduct'
 import AddCustomer from './components/layout/AddCustomer';
@@ -16,7 +17,8 @@ class App extends Component {
      <Router>
        <CustomNavbar />
         <Switch>
-          <Route exact path='/' component={Dashboard} />
+          <Route exact path='/' component={Dash} />
+          {/*<Route exact path='/' component={Dash} />*/}
           <Route path='/addproduct' component={AddProduct} />
           <Route path='/addcustomer' component={AddCustomer} />
           <Route path='/customerList' component = {CustomerList} />
