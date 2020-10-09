@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import axios from 'axios';
 
+
 class Dash extends Component{
     constructor(props){
         super(props)
@@ -29,7 +30,7 @@ class Dash extends Component{
         .filter(customer => customer.firstName === this.state.inputValue)
         .map(filteredCustomer => (
             <ul key={filteredCustomer.id}>
-                <li >{filteredCustomer.firstName} {filteredCustomer.lastName}, {filteredCustomer.phone}, {filteredCustomer.email}, {filteredCustomer.address}</li>
+                <li >{filteredCustomer.firstName} {filteredCustomer.lastName}, {filteredCustomer.phone}, {filteredCustomer.email}, {filteredCustomer.address} </li>
             </ul>
             ))
 
@@ -41,7 +42,7 @@ class Dash extends Component{
                            <thead>
                               <tr>
                                <th>Search Customers </th>
-                               <th>Selected Customers </th>
+                               <th>Selected Customers </th> 
                                </tr>
                            </thead>
                            <tbody>

@@ -13,7 +13,7 @@ const SignOutLink = () => {
                 <NavLink to='/addcustomer'> Add Customer </NavLink>
             </li>
             <li>
-                <NavLink to='/'>Sign Out</NavLink>
+                <NavLink to='/login'>Sign Out</NavLink>
             </li>
             <li>
                 <NavLink to='/' className='btn btn-floating blue lighten-1'>SS</NavLink>
@@ -22,7 +22,7 @@ const SignOutLink = () => {
         <ul class="sidenav" id="mobile-demo">
         <li><NavLink to='/'> Add Product </NavLink></li>
         <li><NavLink to='/'> Add Customer </NavLink></li>
-        <li><NavLink to='/'>Sign Out</NavLink></li>
+        <li><NavLink to='/'> Sign Out</NavLink></li>
          </ul>
         </div>
     ); 

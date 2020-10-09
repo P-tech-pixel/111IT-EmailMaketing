@@ -52,19 +52,7 @@ class ProductDashboard extends Component {
             newProductModal: !this.state.newProductModal
         });
     }
-
-    /*addProduct() {
-        axios.post('http://localhost:3000/product', this.state.newProductData).then(res => {
-            let { products } = this.state;
-            products.push(res.data);
-            this.setState({ products, newProductModal: false, newProductData: {
-              name: '',
-              email: '',
-              phone: '',
-              checked: false
-            } });
-        });
-    }*/
+    
     toggleEditProductModal() {
         this.setState({
             editProductModal: !this.state.editProductModal
